@@ -11,11 +11,13 @@ class User_model extends CI_Model
 
     function add($data)
     {
-        $result = array('message'=>"",'status'=>0);
+        $result = array('message'=>"",'status'=>0,'user_id'=>"");
         if($this->getUserByUserName($data) === 0){
             $this->db->insert('users',$data);
-            $result['message'] = "Account created";
+            $user = $this->getUser($data);
+            $result['message'] = "Account has been created created successfully";
             $result['status'] = 1;
+            $result['user_id'] = $user->user_id;
         }
         else{
             $result['message'] = "Account has already created";

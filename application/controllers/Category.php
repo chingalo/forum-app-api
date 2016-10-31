@@ -9,7 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Category extends CI_Controller
 {
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Method: PUT, GET, POST, DELETE, OPTIONS');
@@ -22,12 +23,39 @@ class Category extends CI_Controller
         echo json_encode($data);
     }
 
-    function getCategory()
+    function getUserCategories()
     {
+        $postData = file_get_contents("php://input");
+        $dataObject = json_decode($postData);
+
+        @$userId = $dataObject->data->user_id;
+        $data = array(
+            'user_id' => $userId
+        );
+
+        $result = $this->Category_model->getUserCategories($data);
+        echo json_encode($result);
 
     }
 
-    function addCategory(){
+    function addUserCategories()
+    {
+        $postData = file_get_contents("php://input");
+        $dataObject = json_decode($postData);
+
+        @$userId = $dataObject->data->user_id;
+        @$cat_id = $dataObject->data->cat_id;
+        $data = array(
+            'user_id' => $userId,
+            'cat_id' => $cat_id
+        );
+        $result = $this->Category_model->addUserCategories($data);
+        echo json_encode($result);
+
+    }
+
+    function addCategory()
+    {
 
     }
 }

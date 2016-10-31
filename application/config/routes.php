@@ -55,6 +55,8 @@ $route['default_controller'] = 'welcome';
 $route['get-categories'] = 'category/getALlCategories';
 $route['get-category'] = 'category/getCategory';
 $route['add-category'] = 'category/addCategory';
+$route['get-user-categories'] = 'category/getUserCategories';
+$route['add-user-categories'] = "category/addUserCategories";
 
 //for user
 $route['register'] = 'user/register';
