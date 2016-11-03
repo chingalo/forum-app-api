@@ -51,7 +51,19 @@ class Welcome extends CI_Controller {
 			'username'=>"chambua",
 
 		);
+		$x = ["1","2","3"];
+		$output = "";
+		for ($index = 0; $index < sizeof($x); $index++) {
+			if($index == 0){
+				$output = $output.$x[$index];
+			}else{
+				$output = $output ."," .$x[$index];
+			}
+		}
+		echo $output;
+
 		$result = $this->User_model->add($data);
+
 		echo json_encode($result);
 
 	}

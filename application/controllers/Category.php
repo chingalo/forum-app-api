@@ -17,12 +17,14 @@ class Category extends CI_Controller
         header('Access-Control-Allow-Headers: Content-Type, x-xsrf-token');
     }
 
+    //for categories
     function getALlCategories()
     {
         $data = $this->Category_model->getAll();
         echo json_encode($data);
     }
 
+    //routes for user categories
     function getUserCategories()
     {
         $postData = file_get_contents("php://input");
@@ -54,8 +56,18 @@ class Category extends CI_Controller
 
     }
 
-    function addCategory()
+    //routes for category entities
+    function saveCategoryEntity()
     {
 
+    }
+
+    function getCategoryEntities(){
+        $postData = file_get_contents("php://input");
+        $dataObject = json_decode($postData);
+        @$categoryIds = $dataObject->data->categoryIds;
+
+        $result = $this->Category_entity_model->getCategoryEntities($categoryIds);
+        echo json_encode($result);
     }
 }

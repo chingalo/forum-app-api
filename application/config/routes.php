@@ -53,10 +53,17 @@ $route['default_controller'] = 'welcome';
 
 //for categories
 $route['get-categories'] = 'category/getALlCategories';
-$route['get-category'] = 'category/getCategory';
-$route['add-category'] = 'category/addCategory';
+
+//routes for category entities
+$route['save-category-entity'] = "category/saveCategoryEntity";
+$route['get-category-entities'] = "category/getCategoryEntities";
+
+//routes comments
+
+//routes for user categories
 $route['get-user-categories'] = 'category/getUserCategories';
 $route['add-user-categories'] = "category/addUserCategories";
+
 
 //for user
 $route['register'] = 'user/register';

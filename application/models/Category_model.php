@@ -28,15 +28,6 @@ class Category_model extends CI_Model
         $result['message'] = "success";
         $result['status'] = 1;
 
-        /**
-        if($this->getUserByUserName($data) === 0){
-            $this->db->insert('users',$data);
-            $result['message'] = "Account created";
-            $result['status'] = 1;
-        }
-        else{
-            $result['message'] = "Account has already created";
-        }*/
         return $result;
 
     }
