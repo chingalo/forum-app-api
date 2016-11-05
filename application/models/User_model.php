@@ -11,15 +11,14 @@ class User_model extends CI_Model
 
     function add($data)
     {
-        $result = array('message'=>"",'status'=>0,'user_id'=>"");
-        if($this->getUserByUserName($data) === 0){
-            $this->db->insert('users',$data);
+        $result = array('message' => "", 'status' => 0, 'user_id' => "");
+        if ($this->getUserByUserName($data) === 0) {
+            $this->db->insert('users', $data);
             $user = $this->getUser($data);
             $result['message'] = "Account has been created created successfully";
             $result['status'] = 1;
             $result['user_id'] = $user->user_id;
-        }
-        else{
+        } else {
             $result['message'] = "Account has already created";
         }
         return $result;
@@ -27,24 +26,31 @@ class User_model extends CI_Model
 
     function getUserByUserName($data)
     {
-        $sql = "SELECT * FROM users WHERE  username = '".$data['username']."'";
+        $sql = "SELECT * FROM users WHERE  username = '" . $data['username'] . "'";
         $result = $this->db->query($sql);
         return $result->num_rows();
     }
 
     function getUser($data)
     {
-        $sql = "SELECT * FROM users WHERE  username = '".$data['username']."' AND password = '".$data['password']."'";
+        $sql = "SELECT * FROM users WHERE  username = '" . $data['username'] . "' AND password = '" . $data['password'] . "'";
         $result = $this->db->query($sql);
         return $result->row();
     }
 
-    function getAll(){
+    function getAll()
+    {
         $sql = "SELECT * FROM users ";
         $result = $this->db->query($sql);
         return $result->result();
     }
 
+    function getCurrentDate()
+    {
+        date_default_timezone_set('Africa/Dar_es_Salaam');
+        $date = date("Y-m-d");
+        return $date;
+    }
 
 
 }

@@ -21,13 +21,12 @@ class Category_model extends CI_Model
     }
 
     function addUserCategories($data){
-        //todo old values and delete
-        //categories_user
         $result = array('message'=>"",'status'=>0);
+        $sql = "DELETE FROM `categories_user` WHERE user_id = '".$data->user_id."'";
+        $this->db->query($sql);
         $this->db->insert('categories_user',$data);
         $result['message'] = "success";
         $result['status'] = 1;
-
         return $result;
 
     }

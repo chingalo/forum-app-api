@@ -9,6 +9,14 @@
 class Category_entity_model extends CI_Model
 {
 
+    function addCategoryEntity($data){
+        $result = array('message'=>"",'status'=>0);
+        $this->db->insert('categories_entity',$data);
+        $result['message'] = "success";
+        $result['status'] = 1;
+        return $result;
+    }
+
     function getCategoryEntities($categoryId)
     {
         $ids = "";
@@ -16,12 +24,12 @@ class Category_entity_model extends CI_Model
             if($index == 0){
                 $ids = $ids.$categoryId[$index];
             }else{
-                $ids = $ids ."," .$categoryId[$index];
+                $ids = $ids ."','" .$categoryId[$index];
             }
         }
-        $sql = "SELECT categories_entity.eid AS id , categories_entity.cat_id, categories_entity.title, categories_entity.description, categories_entity.posted_date, users.username AS poster, COUNT(comments.comment_id) AS numberOfComents FROM categories_entity JOIN users ON users.user_id = categories_entity.user_id JOIN comments ON comments.eid = categories_entity.eid WHERE categories_entity.cat_id IN('".$ids."') GROUP BY categories_entity.eid";
+        $sql = "SELECT categories_entity.eid AS id, categories_entity.cat_id, categories_entity.title, categories_entity.description, categories_entity.posted_date, users.username AS poster, ( SELECT COUNT(*) FROM comments WHERE comments.eid = categories_entity.eid ) AS numberOfComents FROM categories_entity JOIN users ON users.user_id = categories_entity.user_id WHERE categories_entity.cat_id IN('".$ids."') GROUP BY categories_entity.eid DESC";
         $result = $this->db->query($sql);
-        return $result->result();
+		return $result->result();
 
     }
 

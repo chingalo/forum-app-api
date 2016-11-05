@@ -59,6 +59,9 @@ $route['save-category-entity'] = "category/saveCategoryEntity";
 $route['get-category-entities'] = "category/getCategoryEntities";
 
 //routes comments
+//getComments saveComment
+$route['get-comments/(:any)'] = "category/getComments";
+$route['save-comment'] = "category/saveComment";
 
 //routes for user categories
 $route['get-user-categories'] = 'category/getUserCategories';
