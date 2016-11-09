@@ -40,9 +40,10 @@ class User extends CI_Controller
         @$password = $dataObject->data->password;
         @$phone_number = $dataObject->data->mobileNumber;
         @$email = $dataObject->data->email;
+        @$uni_id = $dataObject->data->uni_id;
 
         $data = array(
-            'uni_id'=> 1,
+            'uni_id'=> $uni_id,
             'username'=>$username,
             'full_name'=>$full_name,
             'password'=>md5($password),
