@@ -19,7 +19,7 @@ class Comment_model extends CI_Model
     }
 
     function getCommentsByTopic($topicId){
-        $sql = "SELECT comments.comment_id, comments.description, comments.posted_date, users.username FROM `comments` JOIN users ON users.user_id = comments.user_id WHERE comments.eid ='".$topicId."'";
+        $sql = "SELECT comments.comment_id, comments.description, comments.posted_date, users.full_name FROM `comments` JOIN users ON users.user_id = comments.user_id WHERE comments.eid ='".$topicId."'";
         $result = $this->db->query($sql);
         return $result->result();
     }

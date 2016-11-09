@@ -36,7 +36,7 @@ class User extends CI_Controller
         $dataObject = json_decode($postData);
 
         @$username = $dataObject->data->username;
-        @$last_name = $dataObject->data->fullName;
+        @$full_name = $dataObject->data->fullName;
         @$password = $dataObject->data->password;
         @$phone_number = $dataObject->data->mobileNumber;
         @$email = $dataObject->data->email;
@@ -44,7 +44,7 @@ class User extends CI_Controller
         $data = array(
             'uni_id'=> 1,
             'username'=>$username,
-            'last_name'=>$last_name,
+            'full_name'=>$full_name,
             'password'=>md5($password),
             'email'=>$email,
             'phone_number'=>$phone_number,
