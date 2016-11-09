@@ -112,7 +112,14 @@ class Category extends CI_Controller
 
         $topicId = $this->uri->segment(2);
 
-        $result = $result = $this->Comment_model->getCommentsByTopic($topicId);
+        $result =  $this->Comment_model->getCommentsByTopic($topicId);
+        echo json_encode($result);
+    }
+
+
+    //universities
+    function getUserUniversities(){
+        $result =  $this->University_model->getUniversities();
         echo json_encode($result);
     }
 

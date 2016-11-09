@@ -67,6 +67,9 @@ $route['save-comment'] = "category/saveComment";
 $route['get-user-categories'] = 'category/getUserCategories';
 $route['add-user-categories'] = "category/addUserCategories";
 
+//university
+$route['get-universities'] = "category/getUserUniversities";
+
 
 //for user
 $route['register'] = 'user/register';
