@@ -73,7 +73,10 @@ $route['get-universities'] = "category/getUserUniversities";
 
 //for user
 $route['register'] = 'user/register';
+$route['forget-password-verification-code'] = 'user/sendForgetPasswordVerificationCode';
+$route['update-password'] = 'user/updatePassword';
 $route['authenticate'] = 'user/authenticate';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

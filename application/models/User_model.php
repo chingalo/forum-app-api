@@ -12,7 +12,7 @@ class User_model extends CI_Model
     function add($data)
     {
         $result = array('message' => "", 'status' => 0, 'user_id' => "");
-        if ($this->getUserByUserName($data) === 0) {
+        if ($this->getUserByUserNameAndEmail($data) === 0) {
             $this->db->insert('users', $data);
             $user = $this->getUser($data);
             $result['message'] = "Account has been created created successfully";
@@ -24,11 +24,23 @@ class User_model extends CI_Model
         return $result;
     }
 
-    function getUserByUserName($data)
+    function getUserByUserNameAndEmail($data)
     {
-        $sql = "SELECT * FROM users WHERE  username = '" . $data['username'] . "'";
+        $sql = "SELECT * FROM users WHERE  username = '" .$data['username']. "' and email = '".$data['email']."'";
         $result = $this->db->query($sql);
         return $result->num_rows();
+    }
+
+    function setPassword($data){
+        $sql = "UPDATE users SET password ='".$data['password']."' WHERE user_id ='".$data['user_id']."'";
+        $this->db->query($sql);
+    }
+
+
+    function getUserByEmail($email){
+        $sql = "SELECT * FROM users WHERE   email = '".$email."'";
+        $result = $this->db->query($sql);
+        return $result->row();
     }
 
     function getUser($data)
